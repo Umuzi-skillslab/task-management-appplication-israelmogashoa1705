@@ -1,8 +1,8 @@
 // Task Management Application - Starter Code with Errors
 
 // Global variables (scoping issues)
-taskList = [];  // Missing var/let/const
-var taskCounter = 0;  // Should use let or const
+const taskList = [];  // Missing var/let/const
+let taskCounter = 0;  // Should use let or const
 
 // Task class with errors
 class Task {
