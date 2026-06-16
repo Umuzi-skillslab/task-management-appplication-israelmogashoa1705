@@ -1,6 +1,7 @@
 // Task Management Application - Starter Code with Errors
 
 // Global variables (scoping issues)
+//Fixed
 const taskList = [];  // Missing var/let/const
 let taskCounter = 0;  // Should use let or const
 
@@ -13,16 +14,19 @@ class Task {
         this.priority = priority;
         this.completed = false;
         // Missing: id property
+        // Fixed
     }
     
     // Missing: method to toggle completion
+    // Fixed
     toggleCompletion(){
         this.completed = !this.completed;
     }
     
     getInfo() {
         // Wrong string concatenation - should use template literals
-        return "Task: " + this.title + " - Priority: " + this.priority;
+        //Fixed
+        return `Task: ${this.title} - Priority: ${this.priority}`;
     }
 }
 
@@ -30,6 +34,8 @@ class Task {
 class SubTask extends Task {
     constructor(title, description, priority, parentTask) {
         // Missing: super() call
+        // Fixed
+        super(title, description, priority);
         this.parentTask = parentTask;
     }
 }
