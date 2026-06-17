@@ -44,17 +44,34 @@ class SubTask extends Task {
 
 // Function with no error handling
 function addTask(title, description, priority) {
-    var newTask = new Task(title, description, priority);  // Should use const
-    taskList.push(newTask);
-    taskCounter++;
-    return newTask;
+    try{
+        if(!title){
+            throw new Error("Title is required");
+        }
+        
+        const newTask = new Task(title, description, priority);
+
+        if (!Array.isArray(taskList)) {
+            throw new Error("Task list is not initialized");
+        }
+
+        taskList.push(newTask);
+        taskCounter++;
+
+        return newTask;
+
+    } catch (error) {
+        console.error("Failed to add task:", error.message);
+        return null;
+    }
 }
 
 // Function with incorrect loop
 function displayAllTasks() {
     // Wrong loop - should use for-of
-    for (var i = 0; i <= taskList.length; i++) {  // Off-by-one error
-        console.log(taskList[i].title);
+    for (const task of taskList) {  // Off-by-one error
+        console.log(taskList.title);
+        //fixed
     }
 }
 
