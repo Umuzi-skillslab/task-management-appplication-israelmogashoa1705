@@ -76,18 +76,17 @@ function displayAllTasks() {
 }
 
 // Function missing parameter
-function findTaskByTitle() {
+function findTaskByTitle(title) {
     // Missing: title parameter
     // Wrong loop construct
-    var i = 0;
-    while (i < taskList.length) {
-        if (taskList[i].title == title) {  // Should use ===
+    for (let i = 0; i < taskList.length; i++) {
+        if (taskList[i].title === title) {  // Should use ===
             return taskList[i];
         }
-        // Missing: i++
     }
+
     return undefined;
-}
+};
 
 // Function with type checking issues
 function updateTaskPriority(taskId, newPriority) {
