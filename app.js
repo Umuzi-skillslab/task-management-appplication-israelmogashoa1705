@@ -91,6 +91,16 @@ function findTaskByTitle(title) {
 
 // Function with type checking issues
 function updateTaskPriority(taskId, newPriority) {
+    // null or undefined validation
+    if (taskId === null || taskId === undefined){
+        throw new TypeError("taskId is required");
+    }
+
+    if (newPriority === null || newPriority === undefined){
+        throw new TypeError("newPriority is required");
+    }
+
+    // type checking
     if (typeof taskId !=='number'){
         throw new TypeError("taskId must be a number");
     }
