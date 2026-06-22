@@ -93,11 +93,11 @@ function findTaskByTitle(title) {
 function updateTaskPriority(taskId, newPriority) {
     // null or undefined validation
     if (taskId === null || taskId === undefined){
-        throw new TypeError("taskId is required");
+        throw new Error("taskId is required");
     }
 
     if (newPriority === null || newPriority === undefined){
-        throw new TypeError("newPriority is required");
+        throw new Error("newPriority is required");
     }
 
     // type checking
@@ -111,6 +111,10 @@ function updateTaskPriority(taskId, newPriority) {
     // Missing: typeof check for parameters
     // Missing: null/undefined validation
 
+    //validate tasklist
+    if (!Array.isArray(taskList)){
+        throw new Error("tasklist is not initialised")
+    }
     for (let i = 0; i < taskList.length; i++) {
         if (taskList[i].id === taskId) {  // Wrong operator (= instead of ===)
             taskList[i].priority = newPriority;
