@@ -113,7 +113,7 @@ function updateTaskPriority(taskId, newPriority) {
 
     //validate tasklist
     if (!Array.isArray(taskList)){
-        throw new Error("tasklist is not initialised")
+        throw new Error("tasklist is not initialised");
     }
     for (let i = 0; i < taskList.length; i++) {
         if (taskList[i].id === taskId) {  // Wrong operator (= instead of ===)
