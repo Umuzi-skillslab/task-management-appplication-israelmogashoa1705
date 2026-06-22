@@ -76,6 +76,7 @@ function displayAllTasks() {
 }
 
 // Function missing parameter
+// Fixed
 function findTaskByTitle(title) {
     // Missing: title parameter
     // Wrong loop construct
@@ -90,11 +91,18 @@ function findTaskByTitle(title) {
 
 // Function with type checking issues
 function updateTaskPriority(taskId, newPriority) {
+    if (typeof taskId !=='number'){
+        throw new TypeError("taskId must be a number");
+    }
+
+    if (typeof newPriority !=='string'){
+        throw new TypeError("newPriority must be a string");
+    }
     // Missing: typeof check for parameters
     // Missing: null/undefined validation
-    
-    for (var i = 0; i < taskList.length; i++) {
-        if (taskList[i].id = taskId) {  // Wrong operator (= instead of ===)
+
+    for (let i = 0; i < taskList.length; i++) {
+        if (taskList[i].id === taskId) {  // Wrong operator (= instead of ===)
             taskList[i].priority = newPriority;
             return true;
         }
