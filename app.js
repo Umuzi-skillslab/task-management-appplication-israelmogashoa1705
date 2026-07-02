@@ -142,7 +142,7 @@ function getTaskDetails(task) {
 function mergeTasks(list1, list2) {
     // Should use spread operator
     //fixed
-    return [...list1, ... list2];
+    return [...list1, ...list2];
 }
 
 // Recursive function with error
