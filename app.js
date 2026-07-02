@@ -146,10 +146,19 @@ function mergeTasks(list1, list2) {
 }
 
 // Recursive function with error
-function countCompletedTasks(tasks, index) {
-    // Missing: base case check
+function countCompletedTasks(tasks, index = 0) {
+
     // Missing: null/undefined check
+    if (!Array.isArray(tasks)){
+        return 0;
+    }
     
+    // base case
+    if (index >= tasks.length){
+        return 0;
+    }
+
+    // recursive part
     if (tasks[index].completed) {
         return 1 + countCompletedTasks(tasks, index + 1);
     } else {
