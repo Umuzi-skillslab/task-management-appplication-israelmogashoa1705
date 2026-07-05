@@ -181,26 +181,31 @@ function calculateAveragePriority() {
     return Math.round(total / taskList.length);
 }
 
-// Filter function with errors
-function getHighPriorityTasks(minPriority) {
-    var highPriority = [];
-    // Should use array methods (filter)
-    for (var i = 0; i < taskList.length; i++) {
-        if (taskList[i].priority > minPriority) {
-            highPriority.push(taskList[i]);
-        }
-    }
-    return highPriority;
-}
-
 // Object with missing methods
 var TaskManager = {
     tasks: taskList,
-    
     // Missing: method to add task using functional approach
-    // Missing: method using array methods (map, filter, reduce)
-    
-    getTotalTasks: function() {
+    addTask(task){
+        this.tasks = [...this.tasks, task];
+    },
+
+    getTaskTitles(){
+        return this.tasks.map(task => task.title);
+    },
+
+    getCompletedtasks(){
+        return this.tasks.filter(task => task.completed);
+    },
+
+    getAveragePriority(){
+        if (this.tasks.length ===0) return 0;
+
+        const total = this.tasks.reduce((Sum, task) => sum + task.priority, 0);
+
+        return Math.round(total /this.tasks.length);
+    },
+ 
+    getTotalTasks(){
         return this.tasks.length;
     }
 };
