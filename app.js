@@ -173,8 +173,8 @@ function calculateAveragePriority() {
         return 0;
     }
 
-    var total = 0;
-    for (var i = 0; i < taskList.length; i++) {
+    let total = 0;
+    for (let i = 0; i < taskList.length; i++) {
         total = total + taskList[i].priority;
     }
     // Should use Math.round or toFixed
