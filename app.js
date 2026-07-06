@@ -15,8 +15,8 @@ class Task {
         this.completed = false;
         // Missing: id property
         // Fixed
-    }
-    
+    };
+
     // Missing: method to toggle completion
     // Fixed
     toggleCompletion(){
@@ -212,3 +212,16 @@ var TaskManager = {
 
 // Export issues - should be a module
 // Missing: proper module exports
+export {
+    Task,
+    SubTask,
+    addTask,
+    displayAllTasks,
+    findTaskByTitle,
+    updateTaskPriority,
+    getTaskDetails,
+    mergeTasks,
+    countCompletedTasks,
+    calculateAveragePriority,
+    TaskManager
+};
