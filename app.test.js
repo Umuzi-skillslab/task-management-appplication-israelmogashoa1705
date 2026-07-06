@@ -14,7 +14,7 @@ import {
 
 describe('Task Class', () => {
     test('should create a task', () => {
-        var task = new Task('Test Task', 'Description', 3);
+        const task = new Task('Test Task', 'Description', 3);
         expect(task.title).toBe('Test Task');
         // Missing: other property checks
     });
