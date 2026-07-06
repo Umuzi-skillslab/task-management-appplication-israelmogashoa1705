@@ -1,6 +1,16 @@
 // Jest Tests - Starter Code with Errors and Missing Tests
 
 // Missing: proper imports/requires
+// fixed
+import {
+    Task,
+    SubTask,
+    addTask,
+    mergeTasks,
+    countCompletedTasks,
+    getTaskDetails,
+    TaskManager
+} from "../src/app.js";
 
 describe('Task Class', () => {
     test('should create a task', () => {
