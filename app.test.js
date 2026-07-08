@@ -13,6 +13,10 @@ import {
 } from "../src/app.js";
 
 describe('Task Class', () => {
+    beforeEach(() => {
+        TaskManager.tasks.length = 0;
+    });
+    
     test('should create a task', () => {
         const task = new Task('Test Task', 'Description', 3);
         expect(task.title).toBe('Test Task');
