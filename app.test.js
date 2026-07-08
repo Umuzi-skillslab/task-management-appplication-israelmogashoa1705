@@ -16,11 +16,15 @@ describe('Task Class', () => {
     beforeEach(() => {
         TaskManager.tasks.length = 0;
     });
-    
+
     test('should create a task', () => {
-        const task = new Task('Test Task', 'Description', 3);
+        const task = new Task(1, 'Test Task', 'Description', 3);
         expect(task.title).toBe('Test Task');
         // Missing: other property checks
+        expect(task.id).toBe(1);
+        expect(task.description).toBe("Description");
+        expect(task.priority).toBe(3);
+        expect(task.completed).toBe(false);
     });
     
     // Missing: test for getInfo method
