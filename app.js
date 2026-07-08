@@ -182,7 +182,7 @@ function calculateAveragePriority() {
 }
 
 // Object with missing methods
-var TaskManager = {
+const TaskManager = {
     tasks: taskList,
     // Missing: method to add task using functional approach
     addTask(task){
