@@ -43,7 +43,7 @@ class SubTask extends Task {
 // Functions with errors
 
 // Function with no error handling
-function addTask(title, description, priority) {
+function addTask(id, title, description, priority, parentTask) {
     try{
         if(!title){
             throw new Error("Title is required");
