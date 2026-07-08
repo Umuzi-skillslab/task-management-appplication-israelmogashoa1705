@@ -60,6 +60,9 @@ describe("SubeTask Class", () => {
 
 describe('Task Functions', () => {
     // Missing: beforeEach to reset taskList
+    beforeEach(() => {
+        TaskManager.tasks.length = 0;
+    });
     
     test('should add task', () => {
         var task = addTask('New Task', 'Test', 2);
