@@ -28,6 +28,11 @@ describe('Task Class', () => {
     });
     
     // Missing: test for getInfo method
+    test("should return task info", () => {
+        const task = new Task(1, "Homework", "Math", 2);
+
+        expect(task.getInfo()).toBe("Task: Homework - Priority: 2");
+    });
     // Missing: test for toggle completion
 });
 
