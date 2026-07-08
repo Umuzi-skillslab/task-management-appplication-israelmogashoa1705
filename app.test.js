@@ -65,9 +65,10 @@ describe('Task Functions', () => {
     });
     
     test('should add task', () => {
-        var task = addTask('New Task', 'Test', 2);
+        const task = addTask('New Task', 'Test', 2);
         // Wrong assertion - should check taskList
-        expect(task).toBeDefined();
+        expect(task).not.toBeNull();
+        expect(task.title).toBe("New Task");
     });
     
     // Missing: test for findTaskByTitle
