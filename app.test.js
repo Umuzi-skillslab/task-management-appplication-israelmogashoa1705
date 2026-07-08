@@ -83,9 +83,18 @@ describe('Task Functions', () => {
 });
 
 describe('Array Operations', () => {
-    // Missing: tests for mergeTasks
-    // Missing: tests for getHighPriorityTasks
-    // Missing: tests for recursive function
+
+        test("should merge two arrays", () => {
+
+            const list1 = [1, 2];
+            const list2 = [3, 4];
+
+            expect(mergeTasks(list1, list2)).toEqual([1,2,3,4]);
+        });
+
+        test("should merge empty arrays", () => {
+            expect(mergeTasks([],[])).toEqual([]);
+        });
 });
 
 // Missing: describe blocks for:
