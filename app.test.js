@@ -71,6 +71,11 @@ describe('Task Functions', () => {
         expect(task.title).toBe("New Task");
     });
     
+    test("should throw error with empty title", () => {
+
+        const task = addTask("", "Test", 2);
+
+        expect(task).toBeNull();
     // Missing: test for findTaskByTitle
     // Missing: test for updateTaskPriority
     // Missing: test for calculateAveragePriority
