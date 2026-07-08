@@ -70,7 +70,7 @@ function addTask(title, description, priority) {
 function displayAllTasks() {
     // Wrong loop - should use for-of
     for (const task of taskList) {  // Off-by-one error
-        console.log(taskList.title);
+        console.log(task.title);
         //fixed
     }
 }
