@@ -97,6 +97,19 @@ describe('Array Operations', () => {
         });
 });
 
+describe("Recursive Function", () => {
+
+    test("should count completed tasks", () => {
+
+        const tasks = [
+            {completed:true},
+            {completed:false},
+            {completed:true}
+        ];
+
+        expect(countCompletedTasks(tasks)).toBe(2);
+    });
+
 // Missing: describe blocks for:
 // - SubTask class and inheritance
 // - Destructuring functions
