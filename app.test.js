@@ -34,6 +34,28 @@ describe('Task Class', () => {
         expect(task.getInfo()).toBe("Task: Homework - Priority: 2");
     });
     // Missing: test for toggle completion
+    test("should toggle completion", () => {
+        const task = new Task(1, "Homework", "Math", 2);
+        task.toggleCompletion();
+        expect(task.completed).toBe(true);
+        task.toggleCompletion();
+        expect(task.completed).toBe(false);
+    });
+});
+
+describe("SubeTask Class", () => {
+    test("should inherit from Task", () => {
+        const subTask = new SubTask(
+            1,
+            "Sub Task",
+            "Description",
+            2,
+            "Parent"
+        );
+
+        expect(subTask instanceof Task).toBe(true);
+        expect(subTask.parentTask).toBe("Parent");
+    });
 });
 
 describe('Task Functions', () => {
