@@ -200,7 +200,7 @@ var TaskManager = {
     getAveragePriority(){
         if (this.tasks.length ===0) return 0;
 
-        const total = this.tasks.reduce((Sum, task) => sum + task.priority, 0);
+        const total = this.tasks.reduce((sum, task) => sum + task.priority, 0);
 
         return Math.round(total /this.tasks.length);
     },
