@@ -110,6 +110,14 @@ describe("Recursive Function", () => {
         expect(countCompletedTasks(tasks)).toBe(2);
     });
 
+    test("should return zero for empty array", () => {
+
+        expect(countCompletedTasks([])).toBe(0);
+
+    });
+
+});
+
 // Missing: describe blocks for:
 // - SubTask class and inheritance
 // - Destructuring functions
