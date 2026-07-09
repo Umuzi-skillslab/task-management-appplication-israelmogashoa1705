@@ -118,6 +118,28 @@ describe("Recursive Function", () => {
 
 });
 
+describe("Destructuring", () => {
+
+    test("should return task details", () => {
+
+        const task = new Task(
+            1,
+            "Assignment",
+            "JavaScript",
+            3
+        );
+
+        expect(getTaskDetails(task)).toEqual({
+            title:"Assignment",
+            description:"JavaScript",
+            priority:3,
+            completed:false
+        });
+
+    });
+
+});
+
 // Missing: describe blocks for:
 // - SubTask class and inheritance
 // - Destructuring functions
