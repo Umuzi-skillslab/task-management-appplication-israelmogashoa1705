@@ -43,7 +43,7 @@ describe('Task Class', () => {
     });
 });
 
-describe("SubeTask Class", () => {
+describe("SubTask Class", () => {
     test("should inherit from Task", () => {
         const subTask = new SubTask(
             1,
@@ -171,9 +171,3 @@ describe("TaskManager", () => {
     });
 
 });
-
-// Missing: describe blocks for:
-// - SubTask class and inheritance
-// - Destructuring functions
-// - Spread/rest operator functions
-// - Module exports/imports
