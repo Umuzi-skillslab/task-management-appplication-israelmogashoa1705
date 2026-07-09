@@ -140,6 +140,22 @@ describe("Destructuring", () => {
 
 });
 
+describe("TaskManager", () => {
+
+    beforeEach(() => {
+        TaskManager.tasks = [];
+    });
+
+    test("should add task to manager", () => {
+
+        const task = new Task(1,"Task","Desc",2);
+
+        TaskManager.addTask(task);
+
+        expect(TaskManager.tasks.length).toBe(1);
+
+    });
+
 // Missing: describe blocks for:
 // - SubTask class and inheritance
 // - Destructuring functions
