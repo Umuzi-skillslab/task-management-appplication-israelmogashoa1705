@@ -76,10 +76,6 @@ describe('Task Functions', () => {
         const task = addTask("", "Test", 2);
 
         expect(task).toBeNull();
-    // Missing: test for findTaskByTitle
-    // Missing: test for updateTaskPriority
-    // Missing: test for calculateAveragePriority
-    // Missing: test for error handling
     });
 });
 
@@ -144,7 +140,7 @@ describe("Destructuring", () => {
 describe("TaskManager", () => {
 
     beforeEach(() => {
-        TaskManager.tasks = [];
+        TaskManager.tasks.length = 0;
     });
 
     test("should add task to manager", () => {
@@ -157,7 +153,7 @@ describe("TaskManager", () => {
 
     });
 
-        test("should return task titles", () => {
+    test("should return task titles", () => {
 
         TaskManager.tasks = [
             new Task(1,"Task 1","",1),
