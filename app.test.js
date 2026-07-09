@@ -156,6 +156,22 @@ describe("TaskManager", () => {
 
     });
 
+        test("should return task titles", () => {
+
+        TaskManager.tasks = [
+            new Task(1,"Task 1","",1),
+            new Task(2,"Task 2","",2)
+        ];
+
+        expect(TaskManager.getTaskTitles()).toEqual([
+            "Task 1",
+            "Task 2"
+        ]);
+
+    });
+
+});
+
 // Missing: describe blocks for:
 // - SubTask class and inheritance
 // - Destructuring functions
