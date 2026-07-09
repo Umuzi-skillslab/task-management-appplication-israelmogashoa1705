@@ -80,6 +80,7 @@ describe('Task Functions', () => {
     // Missing: test for updateTaskPriority
     // Missing: test for calculateAveragePriority
     // Missing: test for error handling
+    });
 });
 
 describe('Array Operations', () => {
