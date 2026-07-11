@@ -9,7 +9,10 @@ import {
     mergeTasks,
     countCompletedTasks,
     getTaskDetails,
-    TaskManager
+    TaskManager,
+    findTaskByTitle,
+    updateTaskPriority,
+    calculateAveragePriority
 } from "../src/app.js";
 
 describe('Task Class', () => {
