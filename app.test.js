@@ -13,7 +13,7 @@ import {
     findTaskByTitle,
     updateTaskPriority,
     calculateAveragePriority
-} from "../src/app.js";
+} from "./src/app.js";
 
 describe('Task Class', () => {
     beforeEach(() => {
@@ -66,6 +66,34 @@ describe('Task Functions', () => {
     beforeEach(() => {
         TaskManager.tasks.length = 0;
     });
+
+    test("should find task by title", () => {
+
+    const task = addTask(
+        "Homework",
+        "Math",
+        2
+    );
+
+    expect(
+        findTaskByTitle("Homework")
+    ).toBe(task);
+
+    });
+
+    test("should update task priority", () => {
+
+    const task = addTask(
+        "Homework",
+        "Math",
+        2
+    );
+
+    updateTaskPriority(task.id, 5);
+
+    expect(task.priority).toBe(5);
+
+    });
     
     test('should add task', () => {
         const task = addTask('New Task', 'Test', 2);
@@ -115,6 +143,24 @@ describe("Recursive Function", () => {
         expect(countCompletedTasks([])).toBe(0);
 
     });
+
+});
+
+test("should calculate average priority", () => {
+
+    addTask(
+        "Task 1",
+        "Test",
+        2
+    );
+
+    addTask(
+        "Task 2",
+        "Test",
+        4
+    );
+
+    expect(calculateAveragePriority()).toBe(3);
 
 });
 
