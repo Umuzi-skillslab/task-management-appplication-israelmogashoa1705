@@ -49,7 +49,7 @@ function addTask(title, description, priority) {
             throw new Error("Title is required");
         }
         
-        const newTask = new Task(title, description, priority);
+        const newTask = new Task(taskCounter, title, description, priority);
 
         if (!Array.isArray(taskList)) {
             throw new Error("Task list is not initialized");
