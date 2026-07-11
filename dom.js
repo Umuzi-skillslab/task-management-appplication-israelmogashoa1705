@@ -6,8 +6,10 @@ function setupEventListeners() {
     const addButton = document.querySelector(".add-task-btn");  // Wrong - mixing ID and class
     const taskInput = document.querySelector("#task-input");  // Missing #
     
-    // Missing: null checks before adding listeners
-    addButton.addEventListener("click", handleAddTask);
+    // Check that elements exist before aading listeners
+    if (addButton){
+        addButton.addEventListener("click", handleAddTask);
+    }
     
     // Missing: other event listeners for form submission, etc.
 }
