@@ -193,7 +193,7 @@ const TaskManager = {
         return this.tasks.map(task => task.title);
     },
 
-    getCompletedtasks(){
+    getCompletedTasks(){
         return this.tasks.filter(task => task.completed);
     },
 
