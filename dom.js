@@ -31,9 +31,11 @@ function setupEventListeners() {
 }
 
 // Function with DOM manipulation errors
+// Prevent the form from reloading the page
 function handleAddTask() {
-    var titleInput = document.getElementById("title");
-    var descInput = document.getElementById("description");
+    const titleInput = document.getElementById("title");
+    const descInput = document.getElementById("description");
+    const priorityInput = document.getElementById("priority");
     
     // No validation
     // Should use event.preventDefault() if form
