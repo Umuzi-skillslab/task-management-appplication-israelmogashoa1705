@@ -11,7 +11,23 @@ function setupEventListeners() {
         addButton.addEventListener("click", handleAddTask);
     }
     
-    // Missing: other event listeners for form submission, etc.
+    // Event listeners
+
+    document.addEventListener("DOMContentLoaded", setupEventListeners);
+
+    if (taskInput) {
+        taskInput.addEventListener("keypress", handleAddTask);
+    }
+
+    const titleInput = document.getElementById("title");
+    if (titleInput) {
+        titleInput.addEventListener("input", () => {});
+    }
+
+    const descriptionInput = document.getElementById("description");
+    if (descriptionInput) {
+        descriptionInput.addEventListener("input", () => {});
+    }
 }
 
 // Function with DOM manipulation errors
