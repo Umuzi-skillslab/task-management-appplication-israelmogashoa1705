@@ -55,10 +55,14 @@ function handleAddTask(event) {
 
 // Function that should use better selectors
 function displayTasks() {
-    var container = document.getElementById("task-list");
-    
-    // Should clear existing content first
-    // Missing: null check
+    const container = document.getElementById("task-list");
+
+    // null check
+    if (!container){
+        return;
+    }
+
+    container.innerHTML = "";
     
     // Inefficient - should use template literals and insertAdjacentHTML
     for (var i = 0; i < taskList.length; i++) {
