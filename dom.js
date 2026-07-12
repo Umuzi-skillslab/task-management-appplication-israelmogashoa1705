@@ -29,7 +29,7 @@ function handleAddTask(event) {
     if (event) {
         event.preventDefault();
     }
-    
+
     const titleInput = document.getElementById("title");
     const descInput = document.getElementById("description");
     const priorityInput = document.getElementById("priority");
@@ -38,12 +38,11 @@ function handleAddTask(event) {
     if (!titleInput || !descInput || !priorityInput){
         return;
     }
-    // Should use event.preventDefault() if form
     
-    var title = titleInput.value;
-    var description = descInput.value;
+    const title = titleInput.value;
+    const description = descInput.value;
+    const priority = Number(priorityInput.value);
     
-    // Missing: priority input
     
     addTask(title, description, 1);
     displayTasks();
