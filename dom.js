@@ -44,10 +44,13 @@ function handleAddTask(event) {
     const priority = Number(priorityInput.value);
     
     
-    addTask(title, description, 1);
+    addTask(title, description, priority);
     displayTasks();
     
     // Missing: clear inputs after adding
+    titleInput.value = "";
+    descInput.value = "";
+    priorityInput.value = "";
 }
 
 // Function that should use better selectors
