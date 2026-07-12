@@ -114,4 +114,7 @@ function loadTasks(){
 }
 
 // Initialize (wrong placement - should use DOMContentLoaded)
-setupEventListeners();
+document.addEventListener("DOMContentLoaded", () =>{
+    setupEventListeners();
+    loadTasks();
+});
