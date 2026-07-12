@@ -1,6 +1,6 @@
 import { addTask } from "./app.js";
 
-// Missing: proper DOM selectors
+// Set up event listeners
 function setupEventListeners() {
     // Wrong selector method
     const addButton = document.querySelector(".add-task-btn");  // Wrong - mixing ID and class
@@ -11,33 +11,33 @@ function setupEventListeners() {
         addButton.addEventListener("click", handleAddTask);
     }
     
-    // Event listeners
-
-    document.addEventListener("DOMContentLoaded", setupEventListeners);
+    // Allow Enter key to add a task
 
     if (taskInput) {
-        taskInput.addEventListener("keypress", handleAddTask);
+        taskInput.addEventListener("keypress", (event) => {
+            if (event.key === "Enter"){
+                handleAddTask(event);
+            }
+        });
     }
 
-    const titleInput = document.getElementById("title");
-    if (titleInput) {
-        titleInput.addEventListener("input", () => {});
-    }
-
-    const descriptionInput = document.getElementById("description");
-    if (descriptionInput) {
-        descriptionInput.addEventListener("input", () => {});
-    }
 }
 
-// Function with DOM manipulation errors
-// Prevent the form from reloading the page
-function handleAddTask() {
+// Function with DOM manipulation
+function handleAddTask(event) {
+
+    if (event) {
+        event.preventDefault();
+    }
+    
     const titleInput = document.getElementById("title");
     const descInput = document.getElementById("description");
     const priorityInput = document.getElementById("priority");
     
-    // No validation
+    //validation
+    if (!titleInput || !descInput || !priorityInput){
+        return;
+    }
     // Should use event.preventDefault() if form
     
     var title = titleInput.value;
