@@ -13,7 +13,7 @@ import {
     findTaskByTitle,
     updateTaskPriority,
     calculateAveragePriority
-} from "./src/app.js";
+} from "./app.js";
 
 describe('Task Class', () => {
     beforeEach(() => {
