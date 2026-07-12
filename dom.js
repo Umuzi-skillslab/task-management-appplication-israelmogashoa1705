@@ -65,10 +65,12 @@ function displayTasks() {
     container.innerHTML = "";
     
     // Inefficient - should use template literals and insertAdjacentHTML
-    for (var i = 0; i < taskList.length; i++) {
-        var div = document.createElement("div");
-        div.innerHTML = "<h3>" + taskList[i].title + "</h3>";
-        div.innerHTML = div.innerHTML + "<p>" + taskList[i].description + "</p>";
+    for (let i = 0; i < taskList.length; i++) {
+        const div = document.createElement("div");
+        div.innerHTML = `
+            <h3>${taskList[i].title}</h3>
+            <p>${taskList[i].description}</p>
+        `;
         container.appendChild(div);
         
         // Missing: task ID, completion status, event handlers for delete/complete
@@ -80,7 +82,7 @@ function handleTaskClick(event) {
     // Missing: event.target check
     // Missing: proper event delegation
     
-    var taskId = event.target.id;  // Wrong way to get task ID
+    var taskId  to get task ID
     
     // Should toggle task completion
     console.log("Task clicked: " + taskId);
