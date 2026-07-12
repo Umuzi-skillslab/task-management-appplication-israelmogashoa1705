@@ -81,8 +81,17 @@ function displayTasks() {
 function handleTaskClick(event) {
     // Missing: event.target check
     // Missing: proper event delegation
-    
-    var taskId  to get task ID
+    if (!event.target){
+        return;
+    }
+
+    const task = event.target.closest(".task");
+
+    if (!task){
+        return;
+    }
+
+    const taskId = task.dataset.id;
     
     // Should toggle task completion
     console.log("Task clicked: " + taskId);
