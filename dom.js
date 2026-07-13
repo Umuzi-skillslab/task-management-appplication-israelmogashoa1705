@@ -103,7 +103,12 @@ function displayTasks() {
     // Creates a visual card for each task.
     for (let i = 0; i < taskList.length; i++) {
         const div = document.createElement("div");
-        div.classList.add("task");
+        
+        // Add completed styling when the task is completed
+        if (taskList[i].completed) {
+            div.classList.add("completed");
+        }
+
         div.dataset.id = taskList[i].id;
 
         // Uses template literals to display task information.
