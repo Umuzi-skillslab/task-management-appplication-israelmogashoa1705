@@ -32,9 +32,8 @@
         </div>
     </div>
     
-    <!-- Scripts loaded in wrong order -->
-    <script src="dom.js"></script>
-    <script src="app.js"></script>
-    <!-- Missing: module script -->
+    <!-- Scripts loaded in correct order as ES6 modules -->
+    <script type="module" src="app.js"></script>
+    <script type="module" src="DOM.js"></script>
 </body>
 </html>
