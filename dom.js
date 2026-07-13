@@ -77,7 +77,7 @@ function displayTasks() {
         <p>Priority: ${taskList[i].priority}</p>
         <p>Completed: ${taskList[i].completed}</p>
         `;
-        
+
         container.appendChild(div);
         
         // Missing: task ID, completion status, event handlers for delete/complete
@@ -124,5 +124,9 @@ function loadTasks(){
 // Initialize (wrong placement - should use DOMContentLoaded)
 document.addEventListener("DOMContentLoaded", () =>{
     setupEventListeners();
+    const container = document.getElementById("task-list");
+    if (container) {
+        container.addEventListener("click", handleTaskClick);
+    }
     loadTasks();
 });
