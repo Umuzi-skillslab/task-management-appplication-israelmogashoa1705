@@ -45,6 +45,7 @@ function handleAddTask(event) {
     
     
     addTask(title, description, priority);
+    saveTasks();
     displayTasks();
     
     // Missing: clear inputs after adding
