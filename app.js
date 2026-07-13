@@ -213,6 +213,7 @@ const TaskManager = {
 // Export issues - should be a module
 // Missing: proper module exports
 export {
+    taskList,
     Task,
     SubTask,
     addTask,
