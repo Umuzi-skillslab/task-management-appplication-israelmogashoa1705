@@ -104,6 +104,9 @@ function displayTasks() {
     for (const task of taskList) {
         const div = document.createElement("div");
         div.classList.add("task");
+
+        // Stores the task ID for the click event handler.
+        div.dataset.id = task.id;
         
         // Adds completed styling when the task is completed.
         if (task.completed){
@@ -143,6 +146,14 @@ function handleTaskClick(event) {
     if (!selectedTask) {
         return;
     }
+
+    // Changes completed status.
+    selectedTask.completed = !selectedTask.completed;
+
+    // Saves and redraws the page.
+    saveTasks();
+    displayTasks();
+    updateStatistics();
 }
 
 //Saves all tasks in localStorage using JSON format.
