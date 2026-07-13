@@ -106,7 +106,7 @@ function updateTaskPriority(taskId, newPriority) {
     }
 
     if (typeof newPriority !=='number'){
-        throw new TypeError("newPriority must be a string");
+        throw new TypeError("newPriority must be a number");
     }
     // Missing: typeof check for parameters
     // Missing: null/undefined validation
