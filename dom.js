@@ -111,6 +111,7 @@ function loadTasks(){
     if (savedTasks){
         taskList.length = 0;
         taskList.push(...JSON.parse(savedTasks));
+        displayTasks();
     }
 }
 
