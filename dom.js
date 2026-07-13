@@ -125,20 +125,17 @@ function displayTasks() {
 //Uses event delegation to detect clicks on task cards.
 function handleTaskClick(event) {
 
-    console.log("Task area clicked");
-    //Ensures the click originated from a valid element.
-    if (!event.target){
-        return;
-    }
-
+        // Finds the nearest task card that was clicked.
     const taskElement = event.target.closest(".task");
-    if (!taskElement){
+
+    if (!taskElement) {
         return;
     }
 
+    // Gets the ID stored in the HTML data attribute.
     const taskId = Number(taskElement.dataset.id);
 
-    // Find the clicked task in the task list.
+    // Finds the matching task in the task list.
     const selectedTask = taskList.find(
         task => task.id === taskId
     );
@@ -146,13 +143,6 @@ function handleTaskClick(event) {
     if (!selectedTask) {
         return;
     }
-
-    // Toggle completion status when the task is clicked.
-    selectedTask.toggleCompletion();
-
-    saveTasks();
-    displayTasks();
-    updateStatistics();
 }
 
 //Saves all tasks in localStorage using JSON format.
