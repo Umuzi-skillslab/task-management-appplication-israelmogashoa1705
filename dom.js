@@ -47,6 +47,7 @@ function handleAddTask(event) {
     addTask(title, description, priority);
     saveTasks();
     displayTasks();
+    updateStatistics();
 
 
     
