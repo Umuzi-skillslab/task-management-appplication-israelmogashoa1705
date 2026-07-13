@@ -105,7 +105,7 @@ function saveTasks(){
 
 // functions to load tasks from localStorage
 function loadTasks(){
-    const savedTasks = localStorage.getItem(tasks);
+    const savedTasks = localStorage.getItem("tasks");
 
     if (savedTasks){
         taskList.length = 0;
