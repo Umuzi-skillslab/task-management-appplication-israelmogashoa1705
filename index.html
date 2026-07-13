@@ -12,18 +12,18 @@
         
         <div class="add-task-section">
             <h2>Add New Task</h2>
-            <!-- Form with issues -->
+            <!-- These input fields collect the information needed to create a new task -->
             <input type="text" id="title" placeholder="Task Title">
             <input type="text" id="description" placeholder="Description">
-            <!-- Missing: priority input -->
+            
+            <!-- Priority allows users to organise tasks according to importance -->
             <input type="number" id="priority" placeholder="Priority">
             <button class="add-task-btn">Add Task</button>
         </div>
         
         <div class="task-list" id="task-list">
-            <!-- Tasks will be displayed here -->
         </div>
-        
+        <!-- This section displays calculated task information -->
         <div class="statistics">
             <h2>statistics</h2>
             <p>Total Tasks: <span id ="total-tasks">0</span></p>
@@ -32,7 +32,7 @@
         </div>
     </div>
     
-    <!-- Scripts loaded in correct order as ES6 modules -->
+    <!-- JavaScript files are loaded as modules to allow import/export functionality -->
     <script type="module" src="app.js"></script>
     <script type="module" src="DOM.js"></script>
 </body>
