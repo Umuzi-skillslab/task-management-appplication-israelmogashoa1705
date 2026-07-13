@@ -1,10 +1,10 @@
-import { addTask } from "./app.js";
+import { addTask, taskList } from "./app.js";
 
 // Set up event listeners
 function setupEventListeners() {
     // Wrong selector method
     const addButton = document.querySelector(".add-task-btn");  // Wrong - mixing ID and class
-    const taskInput = document.querySelector("#task-input");  // Missing #
+    const taskInput = document.querySelector("#title");  // Missing #
     
     // Check that elements exist before aading listeners
     if (addButton){
