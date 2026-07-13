@@ -46,8 +46,16 @@ button:hover {
     padding: 15px;
     margin: 10px 0;
     background-color: #f8f9fa;
-    border-left: 4px solid #007bff;
+    border-left: 5px solid orange; /* Incomplete tasks */
     border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.task.completed {
+    border-left: 5px solid #2196F3; /* Completed tasks */
+    text-decoration: line-through;
+    opacity: 0.6;
 }
 
 .stats {
@@ -55,9 +63,4 @@ button:hover {
     padding: 20px;
     background-color: #e9ecef;
     border-radius: 4px;
-}
-
-.completed {
-    text-decoration: line-through;
-    opacity: 0.6;
 }

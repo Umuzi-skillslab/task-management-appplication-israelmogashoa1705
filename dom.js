@@ -101,22 +101,21 @@ function displayTasks() {
     container.innerHTML = "";
     
     // Creates a visual card for each task.
-    for (let i = 0; i < taskList.length; i++) {
+    for (const task of taskList) {
         const div = document.createElement("div");
+        div.classList.add("task");
         
-        // Add completed styling when the task is completed
-        if (taskList[i].completed) {
+        // Adds completed styling when the task is completed.
+        if (task.completed){
             div.classList.add("completed");
         }
 
-        div.dataset.id = taskList[i].id;
-
-        // Uses template literals to display task information.
+        // Stores the task ID for click handling.
         div.innerHTML = `
-        <h3>${taskList[i].title}</h3>
-        <p>${taskList[i].description}</p>
-        <p>Priority: ${taskList[i].priority}</p>
-        <p>Completed: ${taskList[i].completed}</p>
+            <h3>${task.title}</h3>
+            <p>${task.description}</p>
+            <p>Priority: ${task.priority}</p>
+            <p>Status: ${task.completed ? "Completed ✅" : "Incomplete ❌"}</p>
         `;
 
         container.appendChild(div);
