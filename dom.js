@@ -125,17 +125,28 @@ function handleTaskClick(event) {
         return;
     }
 
-    const task = event.target.closest(".task");
-
-    // Stops if the clicked element is not a task.
-    if (!task){
+    const taskElement = event.target.closest(".task");
+    if (!taskElement){
         return;
     }
 
-    const taskId = task.dataset.id;
-    
-    // Displays the selected task ID in the console.
-    console.log("Task clicked: " + taskId);
+    const taskId = Number(taskElement.dataset.id);
+
+    // Find the clicked task in the task list.
+    const selectedTask = taskList.find(
+        task => task.id === taskId
+    );
+
+    if (!selectedTask) {
+        return;
+    }
+
+    // Toggle completion status when the task is clicked.
+    selectedTask.toggleCompletion();
+
+    saveTasks();
+    displayTasks();
+    updateStatistics();
 }
 
 //Saves all tasks in localStorage using JSON format.
