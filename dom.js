@@ -120,6 +120,8 @@ function displayTasks() {
 
 //Uses event delegation to detect clicks on task cards.
 function handleTaskClick(event) {
+
+    console.log("Task area clicked");
     //Ensures the click originated from a valid element.
     if (!event.target){
         return;
