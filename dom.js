@@ -156,4 +156,5 @@ document.addEventListener("DOMContentLoaded", () =>{
         container.addEventListener("click", handleTaskClick);
     }
     loadTasks();
+    updateStatistics();
 });
