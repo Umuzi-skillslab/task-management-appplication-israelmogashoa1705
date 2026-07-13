@@ -47,11 +47,36 @@ function handleAddTask(event) {
     addTask(title, description, priority);
     saveTasks();
     displayTasks();
+
+
     
     // Missing: clear inputs after adding
     titleInput.value = "";
     descInput.value = "";
     priorityInput.value = "";
+}
+
+//Update Statistics
+function updateStatistics() {
+    const totalTasks = document.getElementById("total-tasks");
+    const completedTasks = document.getElementById("completed-tasks");
+    const averagePriority = document.getElementById("average-priority");
+
+    if (!totalTasks || !completedTasks || !averagePriority) {
+        return;
+    }
+
+    const completed = taskList.filter(task => task.completed).length;
+
+    const average = taskList.length > 0
+        ? Math.round(
+            taskList.reduce((sum, task) => sum + task.priority, 0) / taskList.length
+          )
+        : 0;
+
+    totalTasks.textContent = taskList.length;
+    completedTasks.textContent = completed;
+    averagePriority.textContent = average;
 }
 
 // Function that should use better selectors
