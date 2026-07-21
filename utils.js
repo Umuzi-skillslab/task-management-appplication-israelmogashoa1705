@@ -52,9 +52,9 @@ function isHighPriority(task) {
 // Export utilities.
 export {
     priorities,
-    saveToStorage,
-    loadFromStorage,
-    generateRandomId,
+    saveTasksToStorage,
+    loadTasksFromStorage,
     formatTaskName,
-    isHighPriority
+    isHighPriority,
+    validateAll
 };
