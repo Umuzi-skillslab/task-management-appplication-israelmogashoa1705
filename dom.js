@@ -1,4 +1,4 @@
-// Imports the function used to add tasks and the shared task list
+// // Imports task management functions and storage utilities
 import { addTask, taskList } from "./app.js";
 import { saveTasksToStorage, loadTasksFromStorage } from "./utils.js";
 
@@ -46,8 +46,8 @@ function handleAddTask(event) {
     }
     
     // Reads values entered by the user.
-    const title = titleInput.trim();
-    const description = descInput.trim();
+    const title = titleInput.value.trim();
+    const description = descInput.value.trim();
     const priority = Number(priorityInput.value);
     
     // Adds the task and refreshes the interface.
