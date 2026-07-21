@@ -40,18 +40,11 @@ function formatTaskName(name) {
            name.trim().slice(1).toLowerCase();
 }
 
-// Bug: Incorrect boolean logic
+// Return true when a task has a high priority.
 function isHighPriority(task) {
-    if (task.priority == "high") {  // Bug: Using ==
-        return "yes";  // Bug: Should return boolean
-    }
-    return "no";
-}
 
-// Missing: Class definitions
-// Missing: Inheritance example
-// Missing: Module exports
-// Missing: Proper use of operators (logical, comparison)
-// Missing: Recursion
-// Missing: Functional programming patterns
-// Missing: Proper scope demonstration
+    if (!task || typeof task.priority === "undefined") {  // Bug: Using ==
+        return false;
+    }
+    return task.priority >= 3;
+}
