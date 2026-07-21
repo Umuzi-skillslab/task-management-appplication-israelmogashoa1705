@@ -25,16 +25,19 @@ function loadFromStorage() {
 
 }
 
-// Bug: Incorrect Math object usage
+// Generates a whole number ID
 function generateRandomId() {
-    return Math.random();  // Bug: Returns decimal, not integer
+    return Math.floor(Math.random() * 1000000);
 }
 
-// Bug: Poor string manipulation
+// Formats task names consistently.
 function formatTaskName(name) {
-    // Bug: Not using string methods properly
-    var result = name;
-    return result;  // Should capitalize, trim, etc.
+    if (typeof name !== "string"){
+        throw new TypeError("Task name must be a string.");
+    }
+
+    return name.trim().charAt(0).toUpperCase() +
+           name.trim().slice(1).toLowerCase();
 }
 
 // Bug: Incorrect boolean logic
