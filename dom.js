@@ -8,8 +8,8 @@ import { saveTasksToStorage, loadTasksFromStorage } from "./utils.js";
 function setupEventListeners() {
 
     // Selects the Add Task button and the title input field.
-    const addButton = document.querySelector(".add-task-btn");  // Wrong - mixing ID and class
-    const taskInput = document.querySelector("#title");  // Missing #
+    const addButton = document.querySelector(".add-task-btn");
+    const taskInput = document.querySelector("#title"); 
     
     // Adds a click event listener if the button exists.
     if (addButton){
@@ -52,7 +52,7 @@ function handleAddTask(event) {
     
     // Adds the task and refreshes the interface.
     addTask(title, description, priority);
-    saveTasks();
+    saveTasksToStorage(taskList);
     displayTasks();
     updateStatistics();
 
@@ -154,6 +154,7 @@ function handleTaskClick(event) {
     selectedTask.completed = !selectedTask.completed;
 
     // Saves and redraws the page.
+    saveTasksToStorage(taskList);
     displayTasks();
     updateStatistics();
 }
