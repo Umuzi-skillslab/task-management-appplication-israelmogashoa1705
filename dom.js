@@ -120,7 +120,12 @@ function displayTasks() {
         div.innerHTML = `
             <h3>${task.title}</h3>
             <p>${task.description}</p>
-            <p>Priority: ${task.priority}</p>
+            <p>Priority: ${
+                task.priority === 1 ? "Low" :
+                task.priority === 2 ? "Medium" :
+                "High"
+        }</p>
+
             <p>Status: ${task.completed ? "Completed ✅" : "Incomplete ❌"}</p>
         `;
 
