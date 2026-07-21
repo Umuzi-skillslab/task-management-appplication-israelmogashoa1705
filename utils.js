@@ -3,10 +3,14 @@
 // Bug: Not using proper data structures
 var priorities = ["low", "medium", "high"];
 
-// Bug: Missing JSON operations
+// Saves tasks to localStorage using JSON
 function saveToStorage(data) {
-    // Bug: Not converting to JSON
-    localStorage.setItem("tasks", data);
+    try{
+        localStorage.setItem("tasks", JSON.stringify(data));
+    }catch (error){
+        console.error("Failed to save tasks:", error.message);
+    }
+
 }
 
 function loadFromStorage() {
