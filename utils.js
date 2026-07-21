@@ -48,3 +48,13 @@ function isHighPriority(task) {
     }
     return task.priority >= 3;
 }
+
+// Export utilities.
+export {
+    priorities,
+    saveToStorage,
+    loadFromStorage,
+    generateRandomId,
+    formatTaskName,
+    isHighPriority
+};
