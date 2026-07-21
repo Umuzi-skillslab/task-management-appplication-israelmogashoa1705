@@ -72,12 +72,15 @@ function updateStatistics() {
     const highPriorityTasks = document.getElementById("high-priority-tasks");
 
     // Stops execution if any statistics element is missing.
-    if (!totalTasks || !completedTasks || !averagePriority) {
+    if (!totalTasks || !completedTasks || !averagePriority || !highPriorityTasks) {
         return;
     }
 
     // Counts the number of completed tasks.
     const completed = taskList.filter(task => task.completed).length;
+    const highPriority = taskList.filter(
+    task => task.priority === 3
+    ).length;
 
     // Calculates the average task priority.
     const average = taskList.length > 0
@@ -90,6 +93,8 @@ function updateStatistics() {
     totalTasks.textContent = taskList.length;
     completedTasks.textContent = completed;
     averagePriority.textContent = average;
+    averagePriority.textContent = average;
+
 }
 
 // Displays every task stored in the task list.
