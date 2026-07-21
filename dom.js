@@ -69,6 +69,7 @@ function updateStatistics() {
     const totalTasks = document.getElementById("total-tasks");
     const completedTasks = document.getElementById("completed-tasks");
     const averagePriority = document.getElementById("average-priority");
+    const highPriorityTasks = document.getElementById("high-priority-tasks");
 
     // Stops execution if any statistics element is missing.
     if (!totalTasks || !completedTasks || !averagePriority) {
