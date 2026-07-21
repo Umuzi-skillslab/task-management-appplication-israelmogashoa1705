@@ -153,7 +153,6 @@ function handleTaskClick(event) {
     selectedTask.completed = !selectedTask.completed;
 
     // Saves and redraws the page.
-    saveTasks();
     displayTasks();
     updateStatistics();
 }
