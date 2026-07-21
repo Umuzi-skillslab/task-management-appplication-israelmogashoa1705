@@ -4,7 +4,7 @@
 const priorities = ["low", "medium", "high"];
 
 // Saves tasks to localStorage using JSON
-function saveToStorage(data) {
+function saveTasksToStorage(data) {
     try{
         localStorage.setItem("tasks", JSON.stringify(data));
     }catch (error){
@@ -14,7 +14,7 @@ function saveToStorage(data) {
 }
 
 // Loads tasks from localStorage
-function loadFromStorage() {
+function loadTasksFromStorage() {
     try {
         const data = localStorage.getItem("tasks");
         return data ? JSON.parse(data) : [];
@@ -48,6 +48,12 @@ function isHighPriority(task) {
     }
     return task.priority >= 3;
 }
+
+// Validates that all supplied values exist.
+function validateAll(...values) {
+    return values.every((value) => value !== null && value !== undefined);
+}
+
 
 // Export utilities.
 export {
