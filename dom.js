@@ -158,23 +158,6 @@ function handleTaskClick(event) {
     updateStatistics();
 }
 
-//Saves all tasks in localStorage using JSON format.
-function saveTasks(){
-    localStorage.setItem("tasks", JSON.stringify(taskList));
-}
-
-// Loads saved tasks from localStorage when the application starts.
-function loadTasks(){
-    const savedTasks = localStorage.getItem("tasks");
-
-    if (savedTasks){
-        taskList.length = 0;
-        taskList.push(...JSON.parse(savedTasks));
-        displayTasks();
-        updateStatistics();
-    }
-}
-
 // Waits until the page is fully loaded before accessing DOM elements.
 document.addEventListener("DOMContentLoaded", () =>{
     setupEventListeners();
@@ -185,7 +168,11 @@ document.addEventListener("DOMContentLoaded", () =>{
         container.addEventListener("click", handleTaskClick);
     }
 
-    // Restores saved data and updates the interface.
-    loadTasks();
+    const savedTasks = loadTasksFromStorage();
+
+    taskList.length = 0;
+    taskList.push(...savedTasks);
+
+    displayTasks();
     updateStatistics();
 });
