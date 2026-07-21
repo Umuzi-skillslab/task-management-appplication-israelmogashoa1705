@@ -13,10 +13,16 @@ function saveToStorage(data) {
 
 }
 
+// Loads tasks from localStorage
 function loadFromStorage() {
-    // Bug: Not parsing JSON
-    var data = localStorage.getItem("tasks");
-    return data;
+    try {
+        const data = localStorage.getItem("tasks");
+        return data ? JSON.parse(data) : [];
+    } catch (error){
+        console.error("Failed to load tasks:", error.message);
+        return [];
+    }
+
 }
 
 // Bug: Incorrect Math object usage
