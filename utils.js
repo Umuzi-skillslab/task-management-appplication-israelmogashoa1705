@@ -1,7 +1,7 @@
 // Utilities - Starter Code (WITH ERRORS AND MISSING FEATURES)
 
-// Bug: Not using proper data structures
-var priorities = ["low", "medium", "high"];
+// Stores the available priority levels
+const priorities = ["low", "medium", "high"];
 
 // Saves tasks to localStorage using JSON
 function saveToStorage(data) {
