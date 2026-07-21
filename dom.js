@@ -1,6 +1,7 @@
 // Imports the function used to add tasks and the shared task list
 import { addTask, taskList } from "./app.js";
-import { saveToStorage, loadFromStorage } from "./utils.js";
+import { saveTasksToStorage, loadTasksFromStorage } from "./utils.js";
+
 
 
 // Adds all required event listeners after the page has loaded.
