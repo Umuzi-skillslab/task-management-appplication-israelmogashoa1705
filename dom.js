@@ -124,7 +124,7 @@ function displayTasks() {
                 task.priority === 1 ? "Low" :
                 task.priority === 2 ? "Medium" :
                 "High"
-        }</p>
+            }</p>
 
             <p>Status: ${task.completed ? "Completed ✅" : "Incomplete ❌"}</p>
         `;
