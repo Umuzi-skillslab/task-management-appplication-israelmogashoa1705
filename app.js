@@ -101,25 +101,32 @@ function findTaskByTitle(title) {
 //Updates a task priority after validating the supplied values.
 function updateTaskPriority(taskId, newPriority) {
 
+    // Checks that a task ID has been provided.
     if (taskId === null || taskId === undefined){
         throw new Error("taskId is required");
     }
 
+    // Checks that a new priority value has been provided
     if (newPriority === null || newPriority === undefined){
         throw new Error("newPriority is required");
     }
 
+    // Ensures the task ID is the correct data type.
     if (typeof taskId !== "number"){
         throw new TypeError("taskId must be a number");
     }
 
+    / Ensures the priority value is the correct data type.
     if (typeof newPriority !== "number"){
         throw new TypeError("newPriority must be a number");
     }
 
+    // Confirms that the task collection exists before searching
     if (!Array.isArray(taskList)){
         throw new Error("taskList is not initialised");
     }
+
+    // Searches for the matching task and updates its priority.
 
     for (const task of taskList) {
         if (task.id === taskId) {
