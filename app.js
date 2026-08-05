@@ -100,7 +100,7 @@ function findTaskByTitle(title) {
 
 //Updates a task priority after validating the supplied values.
 function updateTaskPriority(taskId, newPriority) {
-    // null or undefined validation
+
     if (taskId === null || taskId === undefined){
         throw new Error("taskId is required");
     }
@@ -109,31 +109,25 @@ function updateTaskPriority(taskId, newPriority) {
         throw new Error("newPriority is required");
     }
 
-    //// Ensures correct data types are provided.
-    if (typeof taskId !=='number'){
+    if (typeof taskId !== "number"){
         throw new TypeError("taskId must be a number");
     }
 
-    if (typeof newPriority !=='number'){
+    if (typeof newPriority !== "number"){
         throw new TypeError("newPriority must be a number");
     }
-
-    // Confirms that the task collection exists.
 
     if (!Array.isArray(taskList)){
         throw new Error("taskList is not initialised");
     }
 
-    if (newPriority < 1 || newPriority > 3){
-        throw new RangeError("Priority must be between 1 and 3");
-    }
-
-    for (let i = 0; i < taskList.length; i++) {
-        if (taskList[i].id === taskId) {
-            taskList[i].updatePriority(newPriority);
+    for (const task of taskList) {
+        if (task.id === taskId) {
+            task.updatePriority(newPriority);
             return true;
         }
     }
+
     return false;
 }
 
