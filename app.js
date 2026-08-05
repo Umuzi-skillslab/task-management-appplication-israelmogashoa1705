@@ -26,6 +26,16 @@ class Task {
         this.completed = !this.completed;
     }
 
+    // Updates the priority of a task.
+    updatePriority(newPriority){
+
+        if (typeof newPriority !== "number" || newPriority < 1 || newPriority > 3){
+            throw new Error("Invalid priority");
+        }
+
+        this.priority = newPriority;
+    }
+
     // Returns a formatted summary of the task using a template literal.
     getInfo() {
         
@@ -120,7 +130,7 @@ function updateTaskPriority(taskId, newPriority) {
 
     for (let i = 0; i < taskList.length; i++) {
         if (taskList[i].id === taskId) {
-            taskList[i].priority = newPriority;
+            taskList[i].updatePriority(newPriority);
             return true;
         }
     }
