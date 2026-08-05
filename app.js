@@ -1,115 +1,174 @@
 // Task Management Application - Starter Code with Errors
 
-// Global variables (scoping issues)
-taskList = [];  // Missing var/let/const
-var taskCounter = 0;  // Should use let or const
+// Stores all tasks created while the application is running.
+const taskList = [];
 
-// Task class with errors
+// Generates unique IDs for newly created tasks.
+let taskCounter = 0;
+
+// Represents a task object containing task information and behaviour
 class Task {
-    constructor(title, description, priority) {
+    constructor(id, title, description, priority) {
+        
+        // Each task receives an ID so it can be found and updated later.
+        this.id = id;
         this.title = title;
         this.description = description;
         this.priority = priority;
+
+        //New tasks are incomplete by default.
         this.completed = false;
-        // Missing: id property
+        
+    };
+
+    // Changes the completion status between completed and incomplete.
+    toggleCompletion(){
+        this.completed = !this.completed;
     }
-    
-    // Missing: method to toggle completion
-    
+
+    // Updates the priority of a task.
+    updatePriority(newPriority){
+
+        if (typeof newPriority !== "number" || newPriority < 1 || newPriority > 3){
+            throw new RangeError("Priority must be between 1 and 3");
+        }
+
+        this.priority = newPriority;
+    }
+
+    // Returns a formatted summary of the task using a template literal.
     getInfo() {
-        // Wrong string concatenation - should use template literals
-        return "Task: " + this.title + " - Priority: " + this.priority;
+        
+        return `Task: ${this.title} - Priority: ${this.priority}`;
     }
 }
 
-// Subtask class with inheritance issues
+// Demonstrates inheritance by extending the Task class.
 class SubTask extends Task {
-    constructor(title, description, priority, parentTask) {
-        // Missing: super() call
+    constructor(id, title, description, priority, parentTask) {
+        
+        // Calls the parent class constructor before adding new properties.
+        super(id, title, description, priority);
         this.parentTask = parentTask;
     }
 }
 
-// Functions with errors
 
-// Function with no error handling
+// Creates a new task after validating the provided information.
 function addTask(title, description, priority) {
-    var newTask = new Task(title, description, priority);  // Should use const
-    taskList.push(newTask);
-    taskCounter++;
-    return newTask;
-}
-
-// Function with incorrect loop
-function displayAllTasks() {
-    // Wrong loop - should use for-of
-    for (var i = 0; i <= taskList.length; i++) {  // Off-by-one error
-        console.log(taskList[i].title);
-    }
-}
-
-// Function missing parameter
-function findTaskByTitle() {
-    // Missing: title parameter
-    // Wrong loop construct
-    var i = 0;
-    while (i < taskList.length) {
-        if (taskList[i].title == title) {  // Should use ===
-            return taskList[i];
+    try{
+        // Prevents empty task titles from being added.
+        if (!title) {
+            throw new Error("Title is required");
         }
-        // Missing: i++
+
+        if (typeof priority !== "number" || priority < 1 || priority > 3) {
+            throw new Error("Priority must be between 1 and 3.");
+        }
+        
+        const newTask = new Task(taskCounter, title, description, priority);
+        // Ensures taskList is correctly initialised before adding data.
+        if (!Array.isArray(taskList)) {
+            throw new Error("taskList is not initialised");
+        }
+
+        taskList.push(newTask);
+        taskCounter++;
+
+        return newTask;
+
+    } catch (error) {
+        // Prevents invalid input from crashing the application.
+        console.error("Failed to add task:", error.message);
+        return null;
     }
-    return undefined;
 }
 
-// Function with type checking issues
-function updateTaskPriority(taskId, newPriority) {
-    // Missing: typeof check for parameters
-    // Missing: null/undefined validation
+// Displays every task title using a for-of loop.
+function displayAllTasks() {
     
-    for (var i = 0; i < taskList.length; i++) {
-        if (taskList[i].id = taskId) {  // Wrong operator (= instead of ===)
-            taskList[i].priority = newPriority;
+    for (const task of taskList) {  // Off-by-one error
+        console.log(task.title);
+        
+    }
+}
+
+// Searches the task list and returns a matching task
+function findTaskByTitle(title) {
+    return taskList.find(task => task.title === title);
+}
+
+//Updates a task priority after validating the supplied values.
+function updateTaskPriority(taskId, newPriority) {
+
+    // Checks that a task ID has been provided.
+    if (taskId === null || taskId === undefined){
+        throw new Error("taskId is required");
+    }
+
+    // Checks that a new priority value has been provided
+    if (newPriority === null || newPriority === undefined){
+        throw new Error("newPriority is required");
+    }
+
+    // Ensures the task ID is the correct data type.
+    if (typeof taskId !== "number"){
+        throw new TypeError("taskId must be a number");
+    }
+
+    // Ensures the priority value is the correct data type.
+    if (typeof newPriority !== "number"){
+        throw new TypeError("newPriority must be a number");
+    }
+
+    // Confirms that the task collection exists before searching
+    if (!Array.isArray(taskList)){
+        throw new Error("taskList is not initialised");
+    }
+
+    // Searches for the matching task and updates its priority.
+
+    for (const task of taskList) {
+        if (task.id === taskId) {
+            task.updatePriority(newPriority);
             return true;
         }
     }
+
     return false;
 }
 
-// Function that should use destructuring but doesn't
+// Uses object destructuring to extract task properties.
 function getTaskDetails(task) {
-    // Should destructure task properties
-    var title = task.title;
-    var description = task.description;
-    var priority = task.priority;
-    var completed = task.completed;
-    
+    const {title, description, priority, completed} = task;
+
     return {
-        title: title,
-        description: description,
-        priority: priority,
-        completed: completed
+        title,
+        description,
+        priority,
+        completed
     };
 }
 
-// Function missing spread/rest operators
+// Combines two arrays using the spread operator..
 function mergeTasks(list1, list2) {
-    // Should use spread operator
-    var merged = [];
-    for (var i = 0; i < list1.length; i++) {
-        merged.push(list1[i]);
-    }
-    for (var i = 0; i < list2.length; i++) {
-        merged.push(list2[i]);
-    }
-    return merged;
+    return [...list1, ...list2];
 }
 
-// Recursive function with error
-function countCompletedTasks(tasks, index) {
-    // Missing: base case check
-    // Missing: null/undefined check
+// Recursively counts completed tasks in an array.
+function countCompletedTasks(tasks, index = 0) {
+
+    // Prevents errors when invalid data is supplied.
+    if (!Array.isArray(tasks)){
+        return 0;
+    }
     
+    // Stops recursion after all tasks have been checked.
+    if (index >= tasks.length){
+        return 0;
+    }
+
+    // recursive part
     if (tasks[index].completed) {
         return 1 + countCompletedTasks(tasks, index + 1);
     } else {
@@ -117,40 +176,78 @@ function countCompletedTasks(tasks, index) {
     }
 }
 
-// Function with Math object issues
-function calculateAveragePriority() {
-    var total = 0;
-    // Missing: check for empty array
-    for (var i = 0; i < taskList.length; i++) {
-        total = total + taskList[i].priority;
+
+// Calculates the average priority value of all tasks.
+function calculateAveragePriority(tasks = taskList) {
+
+    // Handles empty task collections safely.
+    if (!tasks.length) {
+        return 0;
     }
-    // Should use Math.round or toFixed
-    return total / taskList.length;
+
+    const total = tasks.reduce(
+        (sum, task) => sum + task.priority,
+        0
+    );
+
+    return Math.round(total / tasks.length);
 }
 
-// Filter function with errors
-function getHighPriorityTasks(minPriority) {
-    var highPriority = [];
-    // Should use array methods (filter)
-    for (var i = 0; i < taskList.length; i++) {
-        if (taskList[i].priority > minPriority) {
-            highPriority.push(taskList[i]);
-        }
-    }
-    return highPriority;
+// Updates the ID counter after loading saved tasks.
+function resetTaskCounter(tasks = taskList) {
+
+    taskCounter =
+        tasks.length > 0
+            ? Math.max(...tasks.map(task => task.id)) + 1
+            : 0;
 }
 
-// Object with missing methods
-var TaskManager = {
+// Provides reusable methods for managing task data.
+const TaskManager = {
     tasks: taskList,
-    
-    // Missing: method to add task using functional approach
-    // Missing: method using array methods (map, filter, reduce)
-    
-    getTotalTasks: function() {
+     // Adds tasks
+    addTask(task){
+        this.tasks.push(task);
+    },
+
+    // Returns only task titles.
+    getTaskTitles(){
+        return this.tasks.map(task => task.title);
+    },
+
+    // Returns tasks that have been completed.
+    getCompletedTasks(){
+        return this.tasks.filter(task => task.completed);
+    },
+
+    // Calculates average priority using reduce()
+    getAveragePriority(){
+        if (this.tasks.length ===0) return 0;
+
+        const total = this.tasks.reduce((sum, task) => sum + task.priority, 0);
+
+        return Math.round(total /this.tasks.length);
+    },
+ 
+    // Returns the total number of tasks.
+    getTotalTasks(){
         return this.tasks.length;
     }
 };
 
-// Export issues - should be a module
-// Missing: proper module exports
+// Exports functions and classes so other modules can use them.
+export {
+    taskList,
+    Task,
+    SubTask,
+    addTask,
+    displayAllTasks,
+    findTaskByTitle,
+    updateTaskPriority,
+    getTaskDetails,
+    mergeTasks,
+    countCompletedTasks,
+    calculateAveragePriority,
+    resetTaskCounter,
+    TaskManager
+};

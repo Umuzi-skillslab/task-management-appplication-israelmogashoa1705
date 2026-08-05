@@ -1,44 +1,67 @@
 // Utilities - Starter Code (WITH ERRORS AND MISSING FEATURES)
 
-// Bug: Not using proper data structures
-var priorities = ["low", "medium", "high"];
+// Stores the available priority levels
+const priorities = ["low", "medium", "high"];
 
-// Bug: Missing JSON operations
-function saveToStorage(data) {
-    // Bug: Not converting to JSON
-    localStorage.setItem("tasks", data);
-}
-
-function loadFromStorage() {
-    // Bug: Not parsing JSON
-    var data = localStorage.getItem("tasks");
-    return data;
-}
-
-// Bug: Incorrect Math object usage
-function generateRandomId() {
-    return Math.random();  // Bug: Returns decimal, not integer
-}
-
-// Bug: Poor string manipulation
-function formatTaskName(name) {
-    // Bug: Not using string methods properly
-    var result = name;
-    return result;  // Should capitalize, trim, etc.
-}
-
-// Bug: Incorrect boolean logic
-function isHighPriority(task) {
-    if (task.priority == "high") {  // Bug: Using ==
-        return "yes";  // Bug: Should return boolean
+// Saves tasks to localStorage using JSON
+function saveTasksToStorage(data) {
+    try{
+        localStorage.setItem("tasks", JSON.stringify(data));
+    }catch (error){
+        console.error("Failed to save tasks:", error.message);
     }
-    return "no";
+
 }
 
-// Missing: Class definitions
-// Missing: Inheritance example
-// Missing: Module exports
-// Missing: Proper use of operators (logical, comparison)
-// Missing: Recursion
-// Missing: Functional programming patterns
-// Missing: Proper scope demonstration
+// Loads tasks from localStorage
+function loadTasksFromStorage() {
+    try {
+        const data = localStorage.getItem("tasks");
+        return data ? JSON.parse(data) : [];
+    } catch (error){
+        console.error("Failed to load tasks:", error.message);
+        return [];
+    }
+
+}
+
+// Generates a whole number ID
+function generateRandomId() {
+    return Math.floor(Math.random() * 1000000);
+}
+
+// Formats task names consistently.
+function formatTaskName(name) {
+    if (typeof name !== "string"){
+        throw new TypeError("Task name must be a string.");
+    }
+
+    return name.trim().charAt(0).toUpperCase() +
+           name.trim().slice(1).toLowerCase();
+}
+
+// Return true when a task has a high priority.
+function isHighPriority(task) {
+
+    if (task?.priority == null){
+        return false;
+    }
+
+    return task.priority >= 3;
+}
+
+// Validates that all supplied values exist.
+function validateAll(...values) {
+    return values.every((value) => value !== null && value !== undefined);
+}
+
+
+// Export utilities.
+export {
+    priorities,
+    saveTasksToStorage,
+    loadTasksFromStorage,
+    formatTaskName,
+    isHighPriority,
+    validateAll
+};

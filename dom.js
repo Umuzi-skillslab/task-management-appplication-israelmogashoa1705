@@ -1,67 +1,245 @@
-// DOM Manipulation - Starter Code with Errors
+// // Imports task management functions and storage utilities
+// Imports task management functions and storage utilities
+import {
+    addTask,
+    taskList,
+    Task,
+    resetTaskCounter
+} from "./app.js";
 
-// Missing: proper DOM selectors
+import {
+    saveTasksToStorage,
+    loadTasksFromStorage
+} from "./utils.js";
+
+
+
+// Adds all required event listeners after the page has loaded.
 function setupEventListeners() {
-    // Wrong selector method
-    var addButton = document.getElementById(".add-task-btn");  // Wrong - mixing ID and class
-    var taskInput = document.querySelector("task-input");  // Missing #
+
+    // Selects the Add Task button and the title input field.
+    const addButton = document.querySelector(".add-task-btn");
+    const taskInput = document.querySelector("#title");
     
-    // Missing: null checks before adding listeners
-    addButton.addEventListener("click", handleAddTask);
+    // Adds a click event listener if the button exists.
+    if (addButton){
+        addButton.addEventListener("click", handleAddTask);
+    }
+
+    const clearButton = document.getElementById("clearTasks");
+
+    if (clearButton) {
+        clearButton.addEventListener("click", clearTasks);
+    }
     
-    // Missing: other event listeners for form submission, etc.
+    // Allows the Enter key to submit a new task.
+    if (taskInput) {
+        taskInput.addEventListener("keydown", (event) => {
+            if (event.key === "Enter"){
+                handleAddTask(event);
+            }
+        });
+    }
+
 }
 
-// Function with DOM manipulation errors
-function handleAddTask() {
-    var titleInput = document.getElementById("title");
-    var descInput = document.getElementById("description");
+// Reads user input, creates a task, updates the display and saves the data.
+function handleAddTask(event) {
+
+    // Prevents the page from refreshing when the button is clicked.
+    if (event) {
+        event.preventDefault();
+    }
+
+    // Retrieves all required input fields.
+    const titleInput = document.getElementById("title");
+    const descInput = document.getElementById("description");
+    const priorityInput = document.getElementById("priority");
     
-    // No validation
-    // Should use event.preventDefault() if form
+    // Stops execution if any required element cannot be found.
+    if (!titleInput || !descInput || !priorityInput){
+        return;
+    }
     
-    var title = titleInput.value;
-    var description = descInput.value;
+    // Reads values entered by the user.
+    const title = titleInput.value.trim();
+    const description = descInput.value.trim();
+    const priority = Number(priorityInput.value);
+
+    if (!priority){
+        return;
+    }
     
-    // Missing: priority input
-    
-    addTask(title, description, 1);
+    // Adds the task and refreshes the interface.
+    addTask(title, description, priority);
+    saveTasksToStorage(taskList);
     displayTasks();
+    updateStatistics();
+
+
     
-    // Missing: clear inputs after adding
+    // Clears the form so another task can be entered.
+    titleInput.value = "";
+    descInput.value = "";
+    priorityInput.value = "";
 }
 
-// Function that should use better selectors
+// Updates the statistics displayed on the page.
+function updateStatistics() {
+    const totalTasks = document.getElementById("total-tasks");
+    const completedTasks = document.getElementById("completed-tasks");
+    const averagePriority = document.getElementById("average-priority");
+    const highPriorityTasks = document.getElementById("high-priority-tasks");
+
+    // Stops execution if any statistics element is missing.
+    if (!totalTasks || !completedTasks || !averagePriority || !highPriorityTasks) {
+        return;
+    }
+
+    // Counts the number of completed tasks.
+    const completed = taskList.filter(task => task.completed).length;
+    const highPriority = taskList.filter(
+    task => task.priority === 3
+    ).length;
+
+    // Calculates the average task priority.
+    const average = taskList.length > 0
+        ? Math.round(
+            taskList.reduce((sum, task) => sum + task.priority, 0) / taskList.length
+          )
+        : 0;
+
+    // Updates the values displayed on the page.
+    totalTasks.textContent = taskList.length;
+    completedTasks.textContent = completed;
+    averagePriority.textContent = average;
+    highPriorityTasks.textContent = highPriority;
+
+}
+
+// Displays every task stored in the task list.
 function displayTasks() {
-    var container = document.getElementById("task-list");
+    const container = document.getElementById("task-list");
+
+    // Stops execution if the container cannot be found.
+    if (!container){
+        return;
+    }
+
+    // Clears previously displayed tasks before re-rendering.
+    container.innerHTML = "";
     
-    // Should clear existing content first
-    // Missing: null check
-    
-    // Inefficient - should use template literals and insertAdjacentHTML
-    for (var i = 0; i < taskList.length; i++) {
-        var div = document.createElement("div");
-        div.innerHTML = "<h3>" + taskList[i].title + "</h3>";
-        div.innerHTML = div.innerHTML + "<p>" + taskList[i].description + "</p>";
+    // Creates a visual card for each task.
+    for (const task of taskList) {
+
+        const {
+            id,
+            title,
+            description,
+            priority,
+            completed
+        } = task;
+
+        const div = document.createElement("div");
+        div.classList.add("task");
+
+        div.dataset.id = id;
+
+        if (completed) {
+            div.classList.add("completed");
+        }
+
+        div.innerHTML = `
+            <h3>${title}</h3>
+            <p>${description}</p>
+            <p>Priority: ${
+                priority === 1 ? "Low" :
+                priority === 2 ? "Medium" :
+                "High"
+            }</p>
+
+            <p>Status: ${completed ? "Completed ✅" : "Incomplete ❌"}</p>
+        `;
+
         container.appendChild(div);
-        
-        // Missing: task ID, completion status, event handlers for delete/complete
     }
 }
 
-// Function with event handling issues
+//Uses event delegation to detect clicks on task cards.
 function handleTaskClick(event) {
-    // Missing: event.target check
-    // Missing: proper event delegation
-    
-    var taskId = event.target.id;  // Wrong way to get task ID
-    
-    // Should toggle task completion
-    console.log("Task clicked: " + taskId);
+
+        // Finds the nearest task card that was clicked.
+    const taskElement = event.target.closest(".task");
+
+    if (!taskElement) {
+        return;
+    }
+
+    // Gets the ID stored in the HTML data attribute.
+    const taskId = Number(taskElement.dataset.id);
+
+    // Finds the matching task in the task list.
+    const selectedTask = taskList.find(
+        task => task.id === taskId
+    );
+
+    if (!selectedTask) {
+        return;
+    }
+
+    // Changes completed status.
+    selectedTask.completed = !selectedTask.completed;
+
+    // Saves and redraws the page.
+    saveTasksToStorage(taskList);
+    displayTasks();
+    updateStatistics();
 }
 
-// Missing: JSON conversion functions
-// Missing: functions to save/load tasks from localStorage
+// Removes all tasks from the task list and updates storage and display.
+function clearTasks() {
 
-// Initialize (wrong placement - should use DOMContentLoaded)
-setupEventListeners();
+    taskList.length = 0;
+
+    saveTasksToStorage(taskList);
+
+    displayTasks();
+    updateStatistics();
+}
+
+// Waits until the page is fully loaded before accessing DOM elements.
+document.addEventListener("DOMContentLoaded", () =>{
+
+    setupEventListeners();
+
+    const container = document.getElementById("task-list");
+
+    // Adds a delegated click event to the task container.
+    if (container) {
+        container.addEventListener("click", handleTaskClick);
+    }
+
+    const savedTasks = loadTasksFromStorage();
+
+    taskList.length = 0;
+    savedTasks.forEach(task => {
+
+        const restoredTask = new Task(
+            task.id,
+            task.title,
+            task.description,
+            task.priority
+        );
+
+        restoredTask.completed = task.completed;
+
+        taskList.push(restoredTask);
+
+    });
+
+    // Reset the counter so new task IDs don't collide with loaded tasks.
+    resetTaskCounter();
+
+    displayTasks();
+    updateStatistics();
+});

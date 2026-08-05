@@ -1,0 +1,293 @@
+# Issues Identified - Task Management Application
+
+## 1. Variables and Operators
+
+### app.js - Global Variables (top of file)
+
+**Issue:** Variables were missing proper declarations.
+
+* `taskList` was created without `const`, `let`, or `var`.
+* This could create unwanted global variables and cause scope problems.
+
+**Required fix:** Declare variables using `const` or `let`.
+
+---
+
+### app.js - updateTaskPriority() function
+
+**Issue:** Incorrect comparison and validation logic.
+
+Problems found:
+
+* Missing validation for `null` and `undefined` parameters.
+* Missing data type checks.
+* Incorrect operator usage could cause incorrect comparisons.
+
+**Required fix:** Add validation and use strict comparison operators (`===`).
+
+---
+
+## 2. Control Flow and Loops
+
+### app.js - displayAllTasks() function
+
+**Issue:** Loop implementation needed improvement.
+
+Problem found:
+
+* Loop structure contained unnecessary indexing and risked off-by-one errors.
+
+**Required fix:** Use a `for...of` loop to directly iterate through tasks.
+
+---
+
+### app.js - findTaskByTitle() function
+
+**Issue:** Function was incomplete.
+
+Problem found:
+
+* Missing function parameter.
+* Loop and comparison logic needed correction.
+
+**Required fix:** Add the `title` parameter and use correct comparison operators.
+
+---
+
+## 3. Functions and Functional Programming
+
+### app.js - addTask() function
+
+**Issue:** No error handling was implemented.
+
+Problems found:
+
+* Empty task titles were accepted.
+* No validation was performed before adding tasks.
+
+**Required fix:** Add validation and use try/catch error handling.
+
+---
+
+### app.js - countCompletedTasks() function
+
+**Issue:** Recursive function was incomplete.
+
+Problems found:
+
+* Missing validation for invalid input.
+* Recursive logic required a proper base case.
+
+**Required fix:** Add null/undefined checks and ensure recursion stops correctly.
+
+---
+
+### app.js - calculateAveragePriority()
+
+**Issue:** Missing handling for empty task lists.
+
+Problem found:
+
+* Function could fail or return incorrect values when no tasks existed.
+
+**Required fix:** Add empty array validation.
+
+---
+
+## 4. Object-Oriented Programming
+
+### app.js - Task class constructor
+
+**Issue:** Task class was incomplete.
+
+Problems found:
+
+* Required properties were not fully implemented.
+* Missing task ID assignment.
+
+**Required fix:** Add all required properties including `id`.
+
+---
+
+### app.js - Task class methods
+
+**Issue:** Missing completion functionality.
+
+Problem found:
+
+* No method existed to change completed status.
+
+**Required fix:** Add `toggleCompletion()` method.
+
+---
+
+### app.js - SubTask class
+
+**Issue:** Incorrect inheritance implementation.
+
+Problem found:
+
+* Constructor did not call the parent class constructor.
+
+**Required fix:** Add `super()` call before using `this`.
+
+---
+
+## 5. Modern JavaScript Features
+
+### app.js - getTaskDetails()
+
+**Issue:** Object destructuring was missing.
+
+Problem found:
+
+* Properties were accessed individually instead of using ES6 destructuring.
+
+**Required fix:** Use object destructuring.
+
+---
+
+### app.js - mergeTasks()
+
+**Issue:** Spread operator was missing.
+
+Problem found:
+
+* Arrays were not combined using modern ES6 syntax.
+
+**Required fix:** Use the spread operator (`...`).
+
+---
+
+### app.js - getInfo()
+
+**Issue:** Incorrect string formatting.
+
+Problem found:
+
+* String concatenation was used instead of template literals.
+
+**Required fix:** Replace concatenation with template literals.
+
+---
+
+## 6. DOM Manipulation
+
+### DOM.js - setupEventListeners()
+
+**Issue:** DOM selectors and event handling needed correction.
+
+Problems found:
+
+* Incorrect selector comments and incomplete DOM handling.
+* Event listeners were not fully validated.
+
+**Required fix:** Use correct selectors and add null checks.
+
+---
+
+### DOM.js - handleAddTask()
+
+**Issue:** Form handling was incomplete.
+
+Problems found:
+
+* Input fields were not cleared after adding a task.
+* Priority input was missing from the original HTML.
+
+**Required fix:** Add priority field and clear inputs after submission.
+
+---
+
+### DOM.js - displayTasks()
+
+**Issue:** Task display was incomplete.
+
+Problems found:
+
+* Task ID was not displayed/stored.
+* Completion status was missing.
+* Event interaction was incomplete.
+
+**Required fix:** Add task identifiers, status display, and event handling.
+
+---
+
+### DOM.js - localStorage functions
+
+**Issue:** JSON and storage handling contained errors.
+
+Problems found:
+
+* Saving tasks needed JSON.stringify().
+* Loading tasks needed JSON.parse().
+* Saved data was not restored correctly.
+
+**Required fix:** Implement proper JSON conversion and localStorage handling.
+
+---
+
+## 7. Testing
+
+### app.test.js - Test imports
+
+**Issue:** Module imports were incomplete.
+
+**Required fix:** Import all required functions and classes from app.js.
+
+---
+
+### app.test.js - Missing test coverage
+
+**Issue:** Important functionality was not tested.
+
+Missing tests included:
+
+* Task completion toggle.
+* Error handling.
+* Edge cases.
+* SubTask inheritance.
+* Array operations.
+
+**Required fix:** Add additional Jest tests and ensure all tests pass.
+
+---
+
+## 8. Error Handling and Code Quality
+
+### app.js and DOM.js
+
+**Issue:** Application lacked sufficient validation and error handling.
+
+Problems found:
+
+* Functions accepted invalid input.
+* Missing try/catch blocks.
+* Limited comments explaining functionality.
+
+**Required fix:**
+
+* Add parameter validation.
+* Add error handling where required.
+* Add meaningful comments.
+* Maintain consistent formatting.
+
+---
+
+## Summary of Major Issues Found
+
+The starter application contained issues involving:
+
+* Variable scope and declarations
+* Incorrect operators
+* Loop errors
+* Missing function parameters
+* Missing error handling
+* Incomplete classes and inheritance
+* Missing ES6 features
+* Incorrect DOM handling
+* Missing localStorage functionality
+* Incomplete Jest tests
+
+These issues were corrected to create a functional task management application using modern JavaScript practices.
+

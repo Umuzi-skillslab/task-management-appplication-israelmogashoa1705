@@ -12,25 +12,37 @@
         
         <div class="add-task-section">
             <h2>Add New Task</h2>
-            <!-- Form with issues -->
+            <!-- These input fields collect the information needed to create a new task -->
             <input type="text" id="title" placeholder="Task Title">
             <input type="text" id="description" placeholder="Description">
-            <!-- Missing: priority input -->
-            <button class="add-task-btn">Add Task</button>
+            
+            <!-- Priority allows users to organise tasks according to importance -->
+            <select id="priority">
+                <option value="" disabled selected>Priority</option>
+                <option value="1">Low</option>
+                <option value="2">Medium</option>
+                <option value="3">High</option>
+            </select>
+
+            <button class="add-task-btn" type ="button">Add Task</button>
+            <button id="clearTasks">Clear Tasks</button>
         </div>
         
         <div class="task-list" id="task-list">
-            <!-- Tasks will be displayed here -->
         </div>
-        
+        <!-- This section displays calculated task information -->
         <div class="statistics">
-            <!-- Missing: statistics display -->
+            <h2>Statistics</h2>
+            <p>Total Tasks: <span id ="total-tasks">0</span></p>
+            <p>Completed Tasks: <span id="completed-tasks">0</span></p>
+            <p>Average Priority: <span id="average-priority">0</span></p>
+            <p>High Priority Tasks: <span id="high-priority-tasks">0</span></p>
+
         </div>
     </div>
     
-    <!-- Scripts loaded in wrong order -->
-    <script src="dom.js"></script>
-    <script src="app.js"></script>
-    <!-- Missing: module script -->
+    <!-- JavaScript files are loaded as modules to allow import/export functionality -->
+    <script type="module" src="app.js"></script>
+    <script type="module" src="DOM.js"></script>
 </body>
 </html>
