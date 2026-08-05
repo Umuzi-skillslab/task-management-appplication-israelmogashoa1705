@@ -48,14 +48,18 @@ class SubTask extends Task {
 function addTask(title, description, priority) {
     try{
         // Prevents empty task titles from being added.
-        if(!title){
+        if (!title) {
             throw new Error("Title is required");
+        }
+
+        if (typeof priority !== "number" || priority < 1 || priority > 3) {
+            throw new Error("Priority must be between 1 and 3.");
         }
         
         const newTask = new Task(taskCounter, title, description, priority);
         // Ensures taskList is correctly initialised before adding data.
         if (!Array.isArray(taskList)) {
-            throw new Error("Task list is not initialized");
+            throw new Error("TaskList is not initialized");
         }
 
         taskList.push(newTask);
