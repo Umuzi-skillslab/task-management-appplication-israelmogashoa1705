@@ -28,9 +28,9 @@ function setupEventListeners() {
 
     const clearButton = document.getElementById("clearTasks");
 
-if (clearButton) {
-    clearButton.addEventListener("click", clearTasks);
-}
+    if (clearButton) {
+        clearButton.addEventListener("click", clearTasks);
+    }
     
     // Allows the Enter key to submit a new task.
     if (taskInput) {
