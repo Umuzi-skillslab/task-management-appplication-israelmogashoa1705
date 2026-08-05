@@ -193,6 +193,7 @@ function calculateAveragePriority(tasks = taskList) {
     return Math.round(total / tasks.length);
 }
 
+// Updates the ID counter after loading saved tasks.
 function resetTaskCounter(tasks = taskList) {
 
     taskCounter =
