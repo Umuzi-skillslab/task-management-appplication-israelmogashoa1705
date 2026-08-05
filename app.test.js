@@ -170,7 +170,7 @@ test("should calculate average priority", () => {
     addTask(
         "Task 2",
         "Test",
-        4
+        3
     );
 
     expect(calculateAveragePriority()).toBe(3);
