@@ -160,7 +160,7 @@ function countCompletedTasks(tasks, index = 0) {
     }
 }
 
-// Calculates the average priority value of all tasks.
+
 // Calculates the average priority value of all tasks.
 function calculateAveragePriority(tasks = taskList) {
 
@@ -175,6 +175,14 @@ function calculateAveragePriority(tasks = taskList) {
     );
 
     return Math.round(total / tasks.length);
+}
+
+function resetTaskCounter(tasks = taskList) {
+
+    taskCounter =
+        tasks.length > 0
+            ? Math.max(...tasks.map(task => task.id)) + 1
+            : 0;
 }
 
 // Provides reusable methods for managing task data.
