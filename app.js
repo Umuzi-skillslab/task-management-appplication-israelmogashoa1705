@@ -193,9 +193,9 @@ function resetTaskCounter(tasks = taskList) {
 // Provides reusable methods for managing task data.
 const TaskManager = {
     tasks: taskList,
-     // Adds tasks using a functional spread operation.
+     // Adds tasks
     addTask(task){
-        this.tasks = [...this.tasks, task];
+        this.tasks.push(task);
     },
 
     // Returns only task titles.
