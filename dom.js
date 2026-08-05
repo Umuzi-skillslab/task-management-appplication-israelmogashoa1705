@@ -9,7 +9,7 @@ function setupEventListeners() {
 
     // Selects the Add Task button and the title input field.
     const addButton = document.querySelector(".add-task-btn");
-    const taskInput = document.querySelector("#title"); 
+    const taskInput = document.querySelector("#title");
     
     // Adds a click event listener if the button exists.
     if (addButton){
@@ -111,28 +111,34 @@ function displayTasks() {
     
     // Creates a visual card for each task.
     for (const task of taskList) {
+
+        const {
+            id,
+            title,
+            description,
+            priority,
+            completed
+        } = task;
+
         const div = document.createElement("div");
         div.classList.add("task");
 
-        // Stores the task ID for the click event handler.
-        div.dataset.id = task.id;
-        
-        // Adds completed styling when the task is completed.
-        if (task.completed){
+        div.dataset.id = id;
+
+        if (completed) {
             div.classList.add("completed");
         }
 
-        // Stores the task ID for click handling.
         div.innerHTML = `
-            <h3>${task.title}</h3>
-            <p>${task.description}</p>
+            <h3>${title}</h3>
+            <p>${description}</p>
             <p>Priority: ${
-                task.priority === 1 ? "Low" :
-                task.priority === 2 ? "Medium" :
+                priority === 1 ? "Low" :
+                priority === 2 ? "Medium" :
                 "High"
             }</p>
 
-            <p>Status: ${task.completed ? "Completed ✅" : "Incomplete ❌"}</p>
+            <p>Status: ${completed ? "Completed ✅" : "Incomplete ❌"}</p>
         `;
 
         container.appendChild(div);
