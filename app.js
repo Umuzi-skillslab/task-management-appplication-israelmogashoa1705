@@ -85,15 +85,8 @@ function displayAllTasks() {
 
 // Searches the task list and returns a matching task
 function findTaskByTitle(title) {
-
-    for (let i = 0; i < taskList.length; i++) {
-        if (taskList[i].title === title) { 
-            return taskList[i];
-        }
-    }
-
-    return undefined;
-};
+    return taskList.find(task => task.title === title);
+}
 
 //Updates a task priority after validating the supplied values.
 function updateTaskPriority(taskId, newPriority) {
@@ -168,18 +161,20 @@ function countCompletedTasks(tasks, index = 0) {
 }
 
 // Calculates the average priority value of all tasks.
-function calculateAveragePriority() {
+// Calculates the average priority value of all tasks.
+function calculateAveragePriority(tasks = taskList) {
+
     // Handles empty task collections safely.
-    if (!taskList || taskList.length === 0){
+    if (!tasks.length) {
         return 0;
     }
 
-    let total = 0;
-    for (let i = 0; i < taskList.length; i++) {
-        total = total + taskList[i].priority;
-    }
-    // Used Math.round or toFixed
-    return Math.round(total / taskList.length);
+    const total = tasks.reduce(
+        (sum, task) => sum + task.priority,
+        0
+    );
+
+    return Math.round(total / tasks.length);
 }
 
 // Provides reusable methods for managing task data.
