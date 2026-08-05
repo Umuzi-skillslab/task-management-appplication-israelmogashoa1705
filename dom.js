@@ -3,6 +3,7 @@
 import {
     addTask,
     taskList,
+    Task,
     resetTaskCounter
 } from "./app.js";
 
