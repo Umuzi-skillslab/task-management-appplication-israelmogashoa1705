@@ -1,6 +1,15 @@
 // // Imports task management functions and storage utilities
-import { addTask, taskList } from "./app.js";
-import { saveTasksToStorage, loadTasksFromStorage } from "./utils.js";
+// Imports task management functions and storage utilities
+import {
+    addTask,
+    taskList,
+    resetTaskCounter
+} from "./app.js";
+
+import {
+    saveTasksToStorage,
+    loadTasksFromStorage
+} from "./utils.js";
 
 
 
