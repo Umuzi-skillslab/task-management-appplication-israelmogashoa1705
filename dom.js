@@ -200,6 +200,9 @@ document.addEventListener("DOMContentLoaded", () =>{
     taskList.length = 0;
     taskList.push(...savedTasks);
 
+    // Reset the counter so new task IDs don't collide with loaded tasks.
+    resetTaskCounter();
+
     displayTasks();
     updateStatistics();
 });
