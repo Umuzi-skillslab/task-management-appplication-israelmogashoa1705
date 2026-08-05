@@ -192,6 +192,16 @@ function handleTaskClick(event) {
     updateStatistics();
 }
 
+function clearTasks() {
+
+    taskList.length = 0;
+
+    saveTasksToStorage(taskList);
+
+    displayTasks();
+    updateStatistics();
+}
+
 // Waits until the page is fully loaded before accessing DOM elements.
 document.addEventListener("DOMContentLoaded", () =>{
     setupEventListeners();
