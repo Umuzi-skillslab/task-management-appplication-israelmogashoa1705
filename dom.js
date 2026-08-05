@@ -199,7 +199,20 @@ document.addEventListener("DOMContentLoaded", () =>{
     const savedTasks = loadTasksFromStorage();
 
     taskList.length = 0;
-    taskList.push(...savedTasks);
+    savedTasks.forEach(task => {
+
+        const restoredTask = new Task(
+            task.id,
+            task.title,
+            task.description,
+            task.priority
+        );
+
+        restoredTask.completed = task.completed;
+
+        taskList.push(restoredTask);
+
+    });
 
     // Reset the counter so new task IDs don't collide with loaded tasks.
     resetTaskCounter();
