@@ -231,5 +231,6 @@ export {
     mergeTasks,
     countCompletedTasks,
     calculateAveragePriority,
+    resetTaskCounter,
     TaskManager
 };
