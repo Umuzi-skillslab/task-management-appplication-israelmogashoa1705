@@ -34,7 +34,7 @@ function setupEventListeners() {
     
     // Allows the Enter key to submit a new task.
     if (taskInput) {
-        taskInput.addEventListener("keypress", (event) => {
+        taskInput.addEventListener("keydown", (event) => {
             if (event.key === "Enter"){
                 handleAddTask(event);
             }
@@ -192,6 +192,7 @@ function handleTaskClick(event) {
     updateStatistics();
 }
 
+// Removes all tasks from the task list and updates storage and display.
 function clearTasks() {
 
     taskList.length = 0;
@@ -204,7 +205,9 @@ function clearTasks() {
 
 // Waits until the page is fully loaded before accessing DOM elements.
 document.addEventListener("DOMContentLoaded", () =>{
+
     setupEventListeners();
+
     const container = document.getElementById("task-list");
 
     // Adds a delegated click event to the task container.
