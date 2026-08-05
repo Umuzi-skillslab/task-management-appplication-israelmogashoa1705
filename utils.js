@@ -43,9 +43,10 @@ function formatTaskName(name) {
 // Return true when a task has a high priority.
 function isHighPriority(task) {
 
-    if (!task || typeof task.priority === "undefined") {  // Bug: Using ==
+    if (task?.priority == null){
         return false;
     }
+
     return task.priority >= 3;
 }
 
