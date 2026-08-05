@@ -30,7 +30,7 @@ class Task {
     updatePriority(newPriority){
 
         if (typeof newPriority !== "number" || newPriority < 1 || newPriority > 3){
-            throw new Error("Invalid priority");
+            throw new RangeError("Priority must be between 1 and 3");
         }
 
         this.priority = newPriority;
