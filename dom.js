@@ -93,7 +93,7 @@ function updateStatistics() {
     totalTasks.textContent = taskList.length;
     completedTasks.textContent = completed;
     averagePriority.textContent = average;
-    averagePriority.textContent = average;
+    highPriorityTasks.textContent = highPriority;
 
 }
 
