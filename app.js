@@ -59,7 +59,7 @@ function addTask(title, description, priority) {
         const newTask = new Task(taskCounter, title, description, priority);
         // Ensures taskList is correctly initialised before adding data.
         if (!Array.isArray(taskList)) {
-            throw new Error("TaskList is not initialized");
+            throw new Error("taskList is not initialised");
         }
 
         taskList.push(newTask);
@@ -111,8 +111,13 @@ function updateTaskPriority(taskId, newPriority) {
     // Confirms that the task collection exists.
 
     if (!Array.isArray(taskList)){
-        throw new Error("tasklist is not initialised");
+        throw new Error("taskList is not initialised");
     }
+
+    if (newPriority < 1 || newPriority > 3){
+        throw new RangeError("Priority must be between 1 and 3");
+    }
+
     for (let i = 0; i < taskList.length; i++) {
         if (taskList[i].id === taskId) {
             taskList[i].priority = newPriority;
@@ -127,10 +132,10 @@ function getTaskDetails(task) {
     const {title, description, priority, completed} = task;
 
     return {
-        title: title,
-        description: description,
-        priority: priority,
-        completed: completed
+        title,
+        description,
+        priority,
+        completed
     };
 }
 
