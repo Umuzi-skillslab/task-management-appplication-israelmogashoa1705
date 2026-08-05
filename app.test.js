@@ -96,9 +96,9 @@ describe('Task Functions', () => {
         2
     );
 
-    updateTaskPriority(task.id, 5);
+    updateTaskPriority(task.id, 3);
 
-    expect(task.priority).toBe(5);
+    expect(task.priority).toBe(3);
 
     });
     

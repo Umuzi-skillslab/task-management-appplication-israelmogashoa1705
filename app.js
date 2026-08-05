@@ -116,7 +116,7 @@ function updateTaskPriority(taskId, newPriority) {
         throw new TypeError("taskId must be a number");
     }
 
-    / Ensures the priority value is the correct data type.
+    // Ensures the priority value is the correct data type.
     if (typeof newPriority !== "number"){
         throw new TypeError("newPriority must be a number");
     }
