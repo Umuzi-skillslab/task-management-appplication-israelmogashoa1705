@@ -65,6 +65,10 @@ function handleAddTask(event) {
     const title = titleInput.value.trim();
     const description = descInput.value.trim();
     const priority = Number(priorityInput.value);
+
+    if (!priority){
+        return;
+    }
     
     // Adds the task and refreshes the interface.
     addTask(title, description, priority);
